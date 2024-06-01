@@ -6,13 +6,13 @@ import logging
 logging.basicConfig(filename='file_delete.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s',
                     encoding='gbk',filemode='w')
 
-# 数据库文件路径，根据实际情况修改
+# 数据库文件路径.
 db_path = 'kill.sqlite'
-# 数据库中的表名和查询字段，请替换为实际值
+# 数据库中的表名和查询字段.
 table_name = 'file_paths'
 field_name = 'Path'
 
-# 获取用户的桌面路径（这里假设数据库中存储的是相对于桌面的路径，根据实际情况调整）
+# 获取用户的桌面路径
 base_directory = os.path.join(os.path.expanduser("~"), 'Desktop')
 
 try:

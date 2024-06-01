@@ -44,25 +44,25 @@ def main():
     desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
 
     # 指定文件后缀
-    file_formats = [".mp3", ".mp4", ".wav", ".ogg", "flac"]
+    file_formats = [".mp3", ".mp4", ".wav", ".ogg", ".flac", ".mkv"]
 
-    # 使用列表来收集含中文的文件完整路径
-    paths_with_chinese = []
-    chinese_pattern = re.compile(r'.*[^\x00-\xff]+.*')  # 匹配含有非ASCII字符的正则表达式
+    # 使用列表来收集含有非ASCII字符的文件完整路径
+    paths_with_NotASCII = []
+    pattern = re.compile(r'.*[^\x00-\xff]+.*')  # 匹配含有非ASCII字符的正则表达式
 
     for root, _, files in os.walk(desktop_path):
         for file_name in files:
             for file_format in file_formats:
                 if file_name.endswith(file_format):
-                    # 构建完整路径并检查文件名是否包含至少一个中文字符
+                    # 构建完整路径并检查文件名
                     full_path = os.path.join(root, file_name)
-                    if chinese_pattern.match(file_name):
-                        paths_with_chinese.append(full_path)
+                    if pattern.match(file_name):
+                        paths_with_NotASCII.append(full_path)
                         logging.info(f"找到的文件路径: {full_path}")
 
-    # 如果找到了包含中文的文件路径，则直接插入数据库
-    if paths_with_chinese:
-        insert_paths_to_db(conn, paths_with_chinese)
+    # 如果找到了含有非ASCII字符的文件路径，则直接插入数据库
+    if paths_with_NotASCII:
+        insert_paths_to_db(conn, paths_with_NotASCII)
     else:
         logging.warning("未找到任何含有非ASCII字符的文件路径。")
         return
