@@ -1,0 +1,8 @@
+/run.log
+/.venv/
+/.idea/
+/main.spec
+/dist/
+/build/
+/file_delete.log
+/Kill.spec
