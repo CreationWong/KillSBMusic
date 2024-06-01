@@ -1,8 +1,10 @@
 /run.log
 /.venv/
 /.idea/
+/.idea
 /main.spec
 /dist/
 /build/
 /file_delete.log
 /Kill.spec
+.gitignore
